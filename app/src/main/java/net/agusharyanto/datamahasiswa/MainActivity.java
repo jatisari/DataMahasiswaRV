@@ -1,10 +1,10 @@
 package net.agusharyanto.datamahasiswa;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -40,8 +40,8 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent intent = new Intent(MainActivity.this, MahasiswaActivity.class);
+                startActivityForResult(intent, REQUEST_CODE_ADD);
             }
         });
 
@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         rvAdapter = new MahasiswaAdapter(mahasiswaList);
         mRecyclerView.setAdapter(rvAdapter);
 
-     /*  mRecyclerView.addOnItemTouchListener(
+     mRecyclerView.addOnItemTouchListener(
                 new RecyclerItemClickListener(context, new RecyclerItemClickListener.OnItemClickListener() {
                     @Override
                     public void onItemClick(View view, int position) {
@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
                         startActivityForResult(intent, REQUEST_CODE_EDIT);
                     }
                 })
-        );*/
+        );
     }
 
 
@@ -107,5 +107,37 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode) {
+            case REQUEST_CODE_ADD: {
+                if (resultCode == RESULT_OK && null != data) {
+                    if (data.getStringExtra("refreshflag").equals("1")) {
+                        mahasiswaList = databaseHelper.getDataMahasiswa(db);
+                        gambarDatakeRecyclerView();
+                    }
+                }
+                break;
+            }
+            case REQUEST_CODE_EDIT: {
+                if (resultCode == RESULT_OK && null != data) {
+                    if (data.getStringExtra("refreshflag").equals("1")) {
+                        mahasiswaList = databaseHelper.getDataMahasiswa(db);
+                        gambarDatakeRecyclerView();
+                    }
+                }
+                break;
+            }
+        }
+    }
+
+    @Override
+    public void onDestroy(){
+        db.close();
+        databaseHelper.close();
+        super.onDestroy();
     }
 }

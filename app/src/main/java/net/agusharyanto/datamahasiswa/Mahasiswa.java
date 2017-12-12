@@ -1,10 +1,12 @@
 package net.agusharyanto.datamahasiswa;
 
+import java.io.Serializable;
+
 /**
  * Created by agus on 12/12/17.
  */
 
-public class Mahasiswa {
+public class Mahasiswa implements Serializable {
 
     private  String id="";
     private  String nim="";
