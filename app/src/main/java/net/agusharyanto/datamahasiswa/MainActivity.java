@@ -71,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         rvAdapter = new MahasiswaAdapter(mahasiswaList);
         mRecyclerView.setAdapter(rvAdapter);
 
-     /*   mRecyclerView.addOnItemTouchListener(
+     /*  mRecyclerView.addOnItemTouchListener(
                 new RecyclerItemClickListener(context, new RecyclerItemClickListener.OnItemClickListener() {
                     @Override
                     public void onItemClick(View view, int position) {
