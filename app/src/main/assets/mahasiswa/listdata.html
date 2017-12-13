@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="1504.83">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px 'Times New Roman'}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px 'Times New Roman'; min-height: 15.0px}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;?php</p>
+<p class="p2"><br></p>
+<p class="p1">$link = mysql_connect('localhost', 'root', '') or die('Cannot connect to the DB');</p>
+<p class="p1">mysql_select_db('dbmahasiswa', $link) or die('Cannot select the DB');</p>
+<p class="p2"><br></p>
+<p class="p1">$result["errorcode"]="0";</p>
+<p class="p1">/* grab the posts from the db */</p>
+<p class="p1">$query = "SELECT id, nim, nama, jurusan FROM tbl_mahasiswa";</p>
+<p class="p2"><br></p>
+<p class="p1">$rs= mysql_query($query) or die('Errorquery:<span class="Apple-converted-space">  </span>'.$query);</p>
+<p class="p1">$countrow=<span class="Apple-converted-space">  </span>mysql_affected_rows();</p>
+<p class="p1">$items = array(); <span class="Apple-converted-space"> </span></p>
+<p class="p1">while($row = mysql_fetch_object($rs)){ <span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>array_push($items, $row); <span class="Apple-converted-space"> </span></p>
+<p class="p1">} <span class="Apple-converted-space"> </span></p>
+<p class="p1">if($countrow &gt;0){</p>
+<p class="p1"><span class="Apple-converted-space">    </span>$result["errorcode"] = "1"; <span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">    </span>$result["data"] = $items; <span class="Apple-converted-space"> </span></p>
+<p class="p1">}else{</p>
+<p class="p1"><span class="Apple-converted-space">     </span>$result["errormsg"] = "Tidak ada data"; <span class="Apple-converted-space"> </span></p>
+<p class="p1">} <span class="Apple-converted-space"> </span></p>
+<p class="p2"><span class="Apple-converted-space">  </span></p>
+<p class="p1">echo json_encode($result); <span class="Apple-converted-space"> </span></p>
+<p class="p2"><br></p>
+<p class="p1">?&gt;</p>
+</body>
+</html>
