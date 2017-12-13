@@ -24,6 +24,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -35,7 +36,7 @@ public class MainActivityServer extends AppCompatActivity {
     private RecyclerView.LayoutManager mLayoutManager;
     private Context context = MainActivityServer.this;
 
-    private List<Mahasiswa> mahasiswaList;
+    private List<Mahasiswa> mahasiswaList = new ArrayList<Mahasiswa>();
 
     private static  final int REQUEST_CODE_ADD =1;
     private static  final int REQUEST_CODE_EDIT =2;
@@ -97,6 +98,8 @@ public class MainActivityServer extends AppCompatActivity {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         hideDialog();
+                        Log.d("tag","response error:"+error.getMessage());
+
                         error.printStackTrace();
                     }
                 }

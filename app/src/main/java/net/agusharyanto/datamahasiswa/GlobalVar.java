@@ -5,5 +5,5 @@ package net.agusharyanto.datamahasiswa;
  */
 
 public class GlobalVar {
-    public static  String IP_SERVER="192.168.8.103";
+    public static  String IP_SERVER="http://192.168.8.103/";
 }
