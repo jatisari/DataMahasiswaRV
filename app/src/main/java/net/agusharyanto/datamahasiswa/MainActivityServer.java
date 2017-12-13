@@ -54,7 +54,7 @@ public class MainActivityServer extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivityServer.this, MahasiswaActivity.class);
+                Intent intent = new Intent(MainActivityServer.this, MahasiswaActivityServer.class);
                 startActivityForResult(intent, REQUEST_CODE_ADD);
             }
         });
@@ -166,7 +166,7 @@ public class MainActivityServer extends AppCompatActivity {
                         Mahasiswa mahasiswa = rvAdapter.getItem(position);
                         //Toast.makeText(context, "Name :" + mahasiswa.getNama(), Toast.LENGTH_SHORT).show();
                         // selectedPosition = position;
-                        Intent intent = new Intent(MainActivityServer.this, MahasiswaActivity.class);
+                        Intent intent = new Intent(MainActivityServer.this, MahasiswaActivityServer.class);
                         intent.putExtra("mahasiswa", mahasiswa);
                         startActivityForResult(intent, REQUEST_CODE_EDIT);
                     }
